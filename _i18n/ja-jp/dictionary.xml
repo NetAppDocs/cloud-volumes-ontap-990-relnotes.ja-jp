@@ -14,7 +14,6 @@
   <block id="032ad17d65f47ce036675718d3986c48" category="paragraph">C5D および R5D インスタンスタイプには、 Cloud Volumes ONTAP が _Flash Cache _ として使用するローカル NVMe ストレージが含まれます。次の制限事項に注意してください。</block>
   <block id="341cc964e0c52fec40f9705182116dda" category="list-text">Flash Cache のパフォーマンス向上を利用するには、すべてのボリュームで圧縮を無効にする必要があります。</block>
   <block id="405cb575e50b611a22ec99d1abb3f202" category="inline-link">CLI を使用してデータ圧縮を無効にします</block>
-  <block id="e7c76e369ac11cd66c4eb87009b46b45" category="paragraph">Cloud Manager からボリュームを作成するときに Storage Efficiency を使用しないようにするか、またはボリュームを作成してから実行することができます<block ref="41233aab48d70287f1bbc60d78ce6eab" category="inline-link-rx"></block>。</block>
   <block id="444f10b28a63ab25d9664d0647602d07" category="list-text">再起動後のキャッシュの再ウォームアップは、 Cloud Volumes ONTAP ではサポートされていません。</block>
   <block id="c564897ef3b9328940c3edd5bc917926" category="section-title">Amazon CloudWatch から誤ったアラームが報告されます</block>
   <block id="4b88d56bd65ef92611ac63064c38369f" category="inline-link">Amazon CloudWatch</block>
@@ -28,7 +27,6 @@
   <block id="b3dfe19c7d46d1f8795ac17bf3d5a909" category="paragraph">Cloud Volumes ONTAP には、安定した運用を実現するために、ストレージ構成の制限があります最大のパフォーマンスを得るためには、システムを最大値で構成しないでください。</block>
   <block id="ecedb9353641e4bd058af0268a6edce8" category="section-title">ライセンス別の最大システム容量</block>
   <block id="6fa7d9268a4a052eee070e7e621245fe" category="paragraph">Cloud Volumes ONTAP システムの最大システム容量はライセンスで決まります。最大システム容量には、ディスクベースのストレージに加えて、データの階層化に使用されるオブジェクトストレージが含まれます。</block>
-  <block id="b160602445b0a1ec96684f26bf8b35d3" category="paragraph">ネットアップでは、システム容量の制限を超えた使用はサポートしていません。ライセンス容量の上限に達すると、 Cloud Manager は「 Action Required 」メッセージを表示し、ディスクを追加できなくなります。</block>
   <block id="ba23388576c937a1743b84554bd13c72" category="inline-link">使用頻度の低いデータをオブジェクトストレージに階層化します</block>
   <block id="13e43f7520d8163c6554fc15774d56ed" category="paragraph">一部の構成では、ディスク制限により、ディスクのみを使用して容量制限に達することができません。その場合、で容量の制限に達することができます<block ref="91a4fc4ecb983c2fca7588f26341e223" category="inline-link-rx"></block>。詳細については、以下の容量とディスクの制限を参照してください。</block>
   <block id="794df3791a8c800841516007427a2aa3" category="cell">使用許諾</block>
@@ -46,7 +44,6 @@
   <block id="376c581ebe9ec9aa8853377f8538ebbd" category="cell">容量単位のライセンスです</block>
   <block id="9010e525ec80d0fdea3d56191f64ce39" category="cell">2 PiB</block>
   <block id="44007958b04e5e15a25a3ca1ee98abeb" category="paragraph">容量制限は HA ペア全体の容量制限です。ノード単位ではありません。たとえば、 Premium ライセンスを使用する場合、両方のノード間で最大 368 TiB の容量を確保できます。</block>
-  <block id="8644b747d80d3144a35c2f7a3eb37c2e" category="paragraph">いいえ、できません。AWS HA ペアのデータは、障害発生時にデータを利用できるように、ノード間で同期的にミラーされます。たとえば、ノード A で 8TiB ディスクを購入した場合、 Cloud Manager は、ミラーリングされたデータに使用する 8 TiB のディスクをノード B にも割り当てます。16TiB の容量がプロビジョニングされましたが、ライセンスの上限には 8TiB しかカウントされません。</block>
   <block id="c029ebf0cab0f40812ebec7c644fef41" category="section-title">ディスクおよび階層化の制限は EC2 インスタンスごとに適用されます</block>
   <block id="5a9c94e941761c15ef227dfa8c3fc6d8" category="paragraph">Cloud Volumes ONTAP は EBS ボリュームをディスクとして使用し、最大ディスクサイズは 16TiB です。以下のセクションでは、 EC2 インスタンスファミリーごとにディスクと階層化の制限を示します。これは、多くの EC2 インスタンスタイプでディスクの制限が異なるためです。また、シングルノードシステムと HA ペアではディスク制限も異なります。</block>
   <block id="cf3a2d2c139bf5c9cc87fe714bfff3b1" category="paragraph">次の点に注意してください。</block>
@@ -145,7 +142,6 @@
   <block id="02e74f10e0327ad868d138f2b4fdd6f0" category="cell">27</block>
   <block id="67c6a1e7ce56d3d6fa748ab6d9af3fd7" category="cell">47</block>
   <block id="ecec66d315c28b83ea2e4c24466a6778" category="list-text">この数値は、 Cloud Volumes ONTAP の導入とセットアップ後にポート e0a で使用可能な残りのプライベート IP アドレスの数を示します。たとえば、 *.2xlarge システムでは、ネットワークインターフェイスごとに最大 15 の IP アドレスがサポートされます。単一の AZ に HA ペアを導入すると、 5 つのプライベート IP アドレスがポート e0a に割り当てられます。そのため、インスタンスタイプが *.2xlarge の HA ペアでは、追加の Storage VM 用にプライベート IP アドレスが 10 個残っています。</block>
-  <block id="717ac98dd2c26224834bdc47a5a79849" category="list-text">これらの列に表示される数には、 Cloud Manager がデフォルトで作成する初期 Storage VM が含まれます。たとえば、この列に 24 個表示されている場合、合計 23 個の Storage VM を追加で作成でき、合計 24 個の VM が表示されます。</block>
   <block id="5be8cdd9a3ac4856418d3e7ef11fe0d1" category="list-text">Storage VM の管理 LIF はオプションです。管理 LIF は、 SnapCenter などの管理ツールへの接続を提供します。</block>
   <block id="d5b5d1eda2a2c0d060f59094000e6aea" category="paragraph">プライベート IP アドレスが必要なため、追加で作成できる Storage VM の数が制限されます。ただし、複数の AZ にまたがる HA ペアは例外です。この場合、管理 LIF の IP アドレスは _floating_ip アドレスであるため、 _private_IP 制限にはカウントされません。</block>
   <block id="4f9154c68af93dc525373bf1a9c2edce" category="section-title">ファイルとボリュームの制限</block>
@@ -208,7 +204,6 @@
   <block id="86eaddcad9cef8a014b014a3ad2afb9c" category="cell">368 TB</block>
   <block id="38797647ee0806ca5a6dba902f03f6e0" category="cell">1 ライセンスあたり 368 TB</block>
   <block id="ce5ee1bd79a3fbc4ee9fee207a94ef54" category="paragraph">容量制限は HA ペア全体の容量制限です。ノード単位ではありません。たとえば、 Premium ライセンスを使用する場合、両方のノード間で最大 368 TB の容量を確保できます。</block>
-  <block id="1ddc84b3dc9fe6599d89fd9b7f5c6660" category="paragraph">いいえ、できません。HA ペアのデータは、 Google Cloud で障害が発生した場合にデータを利用できるように、ノード間で同期的にミラーされます。たとえば、ノード A で 8TB ディスクを購入した場合、 Cloud Manager は、ミラーリングされたデータに使用する 8 TB のディスクをノード B にも割り当てます。16TB の容量がプロビジョニングされましたが、ライセンスの上限には 8TB しかカウントされません。</block>
   <block id="466cd90b62b5da75ee4bd662add41e7f" category="section-title">ディスクと階層化の制限</block>
   <block id="49e0d392d83f24aa1384f18b22975ef6" category="paragraph">次の表に、ディスクのみの場合の最大システム容量と、オブジェクトストレージへのディスクおよびコールドデータの階層化を示します。ディスク制限はユーザデータが格納されたディスクに固有です。この制限には、ブートディスクとルートディスクは含まれていません。</block>
   <block id="08fca9107919e2a3190d5edc75ce7c61" category="cell">最大データディスク数</block>
@@ -234,7 +229,6 @@
   <block id="324f218b8144e744b54eb58e0bf14eea" category="cell">16 TB</block>
   <block id="fa6258f6bacddead986c2cbf9e97e512" category="cell">クローン階層の深さ ^2^</block>
   <block id="309524b9e1ef1d7d7d905c7cb1d358e9" category="cell">100 TB</block>
-  <block id="f930216066584d74a1d100b4781661f9" category="list-text">Cloud Manager では、 SVM ディザスタリカバリのセットアップやオーケストレーションはサポートされません。また、追加の SVM でストレージ関連のタスクをサポートしていません。SVM ディザスタリカバリには、 System Manager または CLI を使用する必要があります。</block>
   <block id="412af2a2404a4e920b18be59197204b0" category="inline-link">SVM ディザスタリカバリ設定エクスプレスガイド</block>
   <block id="c15bb50c43eaf0ceb1bc0ce3d7503ebd" category="list-text"><block ref="c15bb50c43eaf0ceb1bc0ce3d7503ebd" category="inline-link-rx"></block></block>
   <block id="a06e9c241b02eb678d35f19c0eec257f" category="inline-link">『 SVM ディザスタリカバリエクスプレスガイド』</block>
@@ -438,12 +432,7 @@
   <block id="38220a2514a2fcb218be440c035b4175" category="section-title">Cloud Volumes ONTAP は、予約済みおよびオンデマンドの VM インスタンスをサポートします</block>
   <block id="8ce602039d8c7d53c95e1f62b1d83ef0" category="paragraph">Cloud Volumes ONTAP は、クラウドプロバイダから予約済みまたはオンデマンドの VM インスタンスのいずれかで実行できます。それ以外のタイプの VM インスタンスはサポートされません。</block>
   <block id="f9492a63b4f60679d003c1e9c0ebbb18" category="paragraph">アプリケーションリソースの自動管理ソリューションでは、 Cloud Volumes ONTAP システムを管理しないでください。サポートされていない構成に変更される可能性があります。たとえば、このソリューションでは、 Cloud Volumes ONTAP をサポート対象外の VM インスタンスタイプに変更する場合があります。</block>
-  <block id="1d7a5501cfb31aff808abb63ef9085c2" category="section-title">ソフトウェアの更新を Cloud Manager で完了しておく必要があります</block>
-  <block id="93e3c3d0ea43d600b3c3cd4548ea3987" category="paragraph">Cloud Volumes ONTAP のアップグレードが Cloud Manager から完了している必要があります。System Manager または CLI を使用して Cloud Volumes ONTAP をアップグレードしないでください。これを行うと、システムの安定性に影響を与える可能性</block>
   <block id="cbc4bd981852b46f0fbf6e6a6d4ed5af" category="section-title">から Cloud Volumes ONTAP 環境を変更することはできません クラウドプロバイダのコンソール</block>
-  <block id="5f706f3e7b360cd0d02bd068f4ba9afa" category="paragraph">クラウドプロバイダのコンソールから Cloud Volumes ONTAP 構成を変更した場合、サポートされない構成になります。Cloud Manager で作成および管理する Cloud Volumes ONTAP リソースに対する変更は、システムの安定性および Cloud Manager によるシステムの管理機能に影響を及ぼす可能性があります。</block>
-  <block id="871cdf07a10d1cc27cb3166e7a820a66" category="section-title">ディスクとアグリゲートは Cloud Manager で管理する必要があります</block>
-  <block id="dbdb55d3acfbb139cd66db544b19d738" category="paragraph">すべてのディスクとアグリゲートは、 Cloud Manager から直接作成および削除する必要があります。これらのアクションは、別の管理ツールから実行しないでください。これにより、システムの安定性が低下し、将来ディスクを追加できなくなる可能性があります。また、クラウドプロバイダの冗長料金が発生する可能性もあります。</block>
   <block id="4d2719ea5599a5bf1a9973d3b247f959" category="section-title">SnapManager のライセンスに関する制限</block>
   <block id="c91bb6f1740b2a7b3e274deca5e32b94" category="paragraph">SnapManager のサーバ単位のライセンスは、 Cloud Volumes ONTAP でサポートされます。ストレージシステム（ SnapManager スイート）単位のライセンスはサポートされません。</block>
   <block id="c3f5fdee9b6adb6eccff2d4c189ead12" category="section-title">サポートされない ONTAP 機能です</block>
@@ -467,8 +456,6 @@
   <block id="87495e311a3944910e3cc0c7bee3d754" category="list-text">VLAN</block>
   <block id="a0b4f6a123d692f673f8e386d610732c" category="summary">Cloud Volumes ONTAP 9.9.0 には、いくつかの新機能と機能拡張が含まれています。</block>
   <block id="0e7e6b95ab44b5c9dd164ebe8aa66092" category="doc">Cloud Volumes ONTAP 9.9.0 の新機能</block>
-  <block id="f9d74313da16b2bb412c1d7c5efd0534" category="inline-link">Cloud Manager リリースノート</block>
-  <block id="62703524dbb4d20326585184b2149d4d" category="paragraph">その他の機能と機能拡張は、 Cloud Manager の最新バージョンで導入されました。を参照してください<block ref="b168941a5dc7eab411ef9dc2c7a220db" category="inline-link-rx"></block> を参照してください。</block>
   <block id="422377493977e63c0bd8424963633516" category="section-title">最新のアップデート（ 2021 年 4 月 21 日）</block>
   <block id="fb064ee7b94ba2fa52f1a7828fd59e25" category="paragraph">AWS では、ディザスタリカバリ（ DR ）用に最大 24 個の Storage VM （ SVM ）を設定できるようになりました。これまでの制限は、 DR に使用する Storage VM 12 台でした。</block>
   <block id="78603b9991ff000dccbb5ded6c49fa70" category="inline-link-macro">Storage VM の制限に関する詳細情報</block>
@@ -480,7 +467,6 @@
   <block id="78bc98a7ac6c3cfd719ffa5be638119b" category="inline-link">Cloud Volumes ONTAP で GP3 ディスクを使用する方法については、こちらをご覧ください</block>
   <block id="3d0d920a11a5c82c199e03f396f16cbd" category="paragraph"><block ref="3f1287fe1a8a51a4d465bb2bff3f3790" category="inline-link-rx"></block>。</block>
   <block id="46d98c0abb13a137de84cc92dabaf4ee" category="list-text">Cloud Volumes ONTAP はコールド HDD （ sc1 ）ディスクをサポートしなくなりました。</block>
-  <block id="43ab30bcd6753a8f13ff684dc91925f0" category="paragraph">これらの EBS ディスクの変更は、 Cloud Manager 3.2.5 の一部として導入されました。</block>
   <block id="93a805de30db8aed5e29e7e223c52ea5" category="paragraph">* Azure アップデート *</block>
   <block id="416247cdfd95c24e8b0018dec41624a5" category="list-text">新しい E シリーズ VM タイプがサポートされます。</block>
   <block id="89567849e54395d27c32428de6821a45" category="list-text">4S_v3 でシングルノードシステムの場合は、 PAYGO Explore または BYOL を使用します</block>
@@ -510,15 +496,7 @@
   <block id="c45e0618f61cd169e7df7902bdc87404" category="paragraph"><block ref="4f31f2ea9e29a63df80425f70a7a8783" category="inline-link-macro-rx"></block>。</block>
   <block id="23561ac981518cd9f15688095bc213d2" category="inline-link">Cloud Volume 用のデータ提供用 Storage VM を作成する方法について説明します Azure の ONTAP</block>
   <block id="825e796c63880b40a41080420bc84ff8" category="paragraph"><block ref="ebf8dba73a080cc5870e50d75600264c" category="inline-link-rx"></block>。</block>
-  <block id="40a3c7b33b166dae48cfa8c02b36318a" category="section-title">必要な Cloud Manager Connector のバージョン</block>
-  <block id="fa76400c45fa16f022dbcd0982694743" category="paragraph">新しい Cloud Volumes ONTAP 9.9.0 システムを導入し、既存のシステムを 9.9.4.0 にアップグレードするには、 Cloud Manager Connector のバージョン 3.9.4 以降が実行されている必要があります。</block>
-  <block id="bd14a5e36ade099a2c13e0ed84db8ee1" category="section-title">Cloud Manager 3.9.4 で導入された変更点</block>
-  <block id="5352e20d71415eddcd531509917d36f7" category="paragraph">Cloud Manager 3.9.4 リリースでは、 AWS KMS のサポート強化、 Google Cloud での共有 VPC のサポート、 Google Cloud での IP の削減など、 Cloud Volumes ONTAP の管理機能がいくつか強化されています。</block>
-  <block id="8cfeb79ade665793ea264217386bd14b" category="paragraph">にアクセスします<block ref="b168941a5dc7eab411ef9dc2c7a220db" category="inline-link-rx"></block> 3.9.4 リリースの詳細については、を参照してください。</block>
   <block id="b5cb41a6703cf18b4cecd5a0817f91cf" category="section-title">アップグレードに関する注意事項</block>
-  <block id="b26ba6521088950e63da32767807013a" category="list-text">9.8 リリースから Cloud Volumes ONTAP 9.9.0 にアップグレードできます。既存の Cloud Volumes ONTAP 9.8 システムを 9.9.0 リリースにアップグレードするよう求めるメッセージが Cloud Manager に表示されます。</block>
-  <block id="1c58b0eb30a6dcb357eb70a5f2b7b763" category="inline-link">Cloud Manager から通知された場合のアップグレード方法について説明します</block>
-  <block id="803d45df8eb29c3872409cc750868adb" category="paragraph"><block ref="91157be1d04ccb789488c1869d33e63c" category="inline-link-rx"></block>。</block>
   <block id="9f0f02784feedfa2549a9e3a51cfa315" category="list-text">シングルノードシステムのアップグレードでは、 I/O が中断されるまで最大 25 分間システムがオフラインになります。</block>
   <block id="00795e3f043d0bab791590ffc0257204" category="list-text">HA ペアのアップグレードは無停止で、 I/O が中断されません。無停止アップグレードでは、各ノードが連携してアップグレードされ、クライアントへの I/O の提供が継続されます。</block>
   <block id="9141535b8d150812f3cded29f090ad8c" category="summary">Google Cloud では、いくつかの Cloud Volumes ONTAP 構成がサポートされています。</block>
@@ -539,7 +517,6 @@
   <block id="46e869bc0f7a5fcdc09df010e1f48b25" category="list-text">新しい Cloud Volumes ONTAP システムでは、 custom-4-16384 マシンタイプはサポートされなくなりました。</block>
   <block id="0e3cb01898d99d0091e2a6f5a7572390" category="paragraph">このタイプのマシンで既存のシステムを実行している場合は、引き続き使用できますが、 n2 標準 -4 マシンタイプに切り替えることをお勧めします。</block>
   <block id="5063d3259058d90bbca06465957626d7" category="list-text">SSD の使用時には書き込みパフォーマンスの向上が実現します。</block>
-  <block id="1d929e66099bae4b599c315f4d90f467" category="list-text">Cloud Manager インターフェイスに、 Standard および BYOL でサポートされる追加のマシンタイプが表示されます。 n1-highmem-4ただし、このマシンタイプは本番環境用ではありません。特定のラボ環境でのみ使用できるようになりました。</block>
   <block id="7093754c2bc2f151c7deef337385971a" category="list-text">Google Cloud Platform リージョンのサポートについては、を参照してください<block ref="2b6a522631c3b3b8afac5466195e108a" category="inline-link-rx"></block>。</block>
   <block id="d29bff99e1f1d5529824e9017672d630" category="paragraph">Google Cloud では、アグリゲートに同じタイプとサイズのディスクを 6 本まで含めることができます。次のディスクサイズがサポートされています。</block>
   <block id="dcfebc6fbca2c5316f55c914e6593d2d" category="list-text">100 GB</block>
@@ -642,4 +619,27 @@
   <block id="2f9882645b2c32820ad085240bacb763" category="paragraph-title">HA の場合、ライセンスの容量制限はノード単位か、 HA ペア全体に適用されるか</block>
   <block id="fc9a388cd18c69244f22554de6f0d544" category="paragraph-title">AWS の HA システムでは、ミラーリングされたデータは容量制限にカウントされますか。</block>
   <block id="1f129df010c594cb0d37bd30745a3820" category="paragraph"><block ref="1f129df010c594cb0d37bd30745a3820" category="inline-link-rx"></block></block>
+  <block id="30749b02bc62d931d770e6c719254e7b" category="list-text">BlueXPインターフェイスには、StandardおよびBYOLでサポートされる追加のマシンタイプが表示されます。n1-highmem-4ただし、このマシンタイプは本番環境用ではありません。特定のラボ環境でのみ使用できるようになりました。</block>
+  <block id="406542fd6b2bb7b1e564e4a6d627bddb" category="paragraph">ネットアップでは、システム容量の制限を超えた使用はサポートしていません。ライセンス容量の上限に達すると、「Action Required」メッセージが表示され、ディスクを追加できなくなります。</block>
+  <block id="59f715c959b1702bb88d03230a637982" category="paragraph">いいえ、できません。AWS HA ペアのデータは、障害発生時にデータを利用できるように、ノード間で同期的にミラーされます。たとえば、ノードAで8TiBのディスクを購入した場合、ミラーリングされたデータに使用される8TiBのディスクがノードBにも割り当てられます。16TiB の容量がプロビジョニングされましたが、ライセンスの上限には 8TiB しかカウントされません。</block>
+  <block id="846a4ecea919427b6111365c125ada6f" category="list-text">これらの列に表示される数には、BlueXPでデフォルトで作成される初期Storage VMが含まれます。たとえば、この列に 24 個表示されている場合、合計 23 個の Storage VM を追加で作成でき、合計 24 個の VM が表示されます。</block>
+  <block id="bbccc552f0baf5d6702dcf1598299981" category="list-text">BlueXPでは、SVMディザスタリカバリのセットアップやオーケストレーションはサポートされていません。また、追加の SVM でストレージ関連のタスクをサポートしていません。SVM ディザスタリカバリには、 System Manager または CLI を使用する必要があります。</block>
+  <block id="38575f0fc0d26dc67b2a72ebc7d0e845" category="paragraph">BlueXPからボリュームを作成するときにStorage Efficiencyを無効にすることも、ボリュームを作成してから実行することもできます<block ref="41233aab48d70287f1bbc60d78ce6eab" category="inline-link-rx"></block>。</block>
+  <block id="fd1f8e9df9f2971a09de148f57ee5ce0" category="section-title">ソフトウェアの更新はBlueXPが完了している必要があります</block>
+  <block id="c6925d752394e325c0b435137fbe997c" category="paragraph">Cloud Volumes ONTAP のアップグレードは、BlueXPから完了している必要があります。System Manager または CLI を使用して Cloud Volumes ONTAP をアップグレードしないでください。これを行うと、システムの安定性に影響を与える可能性</block>
+  <block id="93931e849ddff0b1178bc9a719400883" category="paragraph">クラウドプロバイダのコンソールから Cloud Volumes ONTAP 構成を変更した場合、サポートされない構成になります。BlueXPが作成および管理するCloud Volumes ONTAP リソースに変更を加えると、システムの安定性とシステム管理能力に影響を与える可能性があります。</block>
+  <block id="50cc29422b9e0a20958b889dcdd61a0f" category="section-title">ディスクとアグリゲートはBlueXPで管理する必要があります</block>
+  <block id="0dca6333e3e343d1b25adfe474ce6b88" category="paragraph">すべてのディスクとアグリゲートは、BlueXPから直接作成および削除する必要があります。これらのアクションは、別の管理ツールから実行しないでください。これにより、システムの安定性が低下し、将来ディスクを追加できなくなる可能性があります。また、クラウドプロバイダの冗長料金が発生する可能性もあります。</block>
+  <block id="9889b7a9df56580016f59ccd942fb1d1" category="inline-link">BlueXPリリースノート</block>
+  <block id="619c180e46c9dec776a0347d35298e14" category="paragraph">その他の機能と拡張機能も、最新バージョンのBlueXPで導入されました。を参照してください<block ref="6872c7556ed1cb501f7ddf52354e86ee" category="inline-link-rx"></block> を参照してください。</block>
+  <block id="b0659f5ee885f81552df48485c7c5771" category="paragraph">これらのEBSディスクの変更は、BlueXP 3.9.5の一部として導入されました。</block>
+  <block id="69d7d15e9cd221668022d228a90f926a" category="section-title">必要なBlueXPコネクタのバージョン</block>
+  <block id="eec9643ffdd542b5de1b9118e35e43fb" category="paragraph">新しいCloud Volumes ONTAP 9.9.0システムを展開し、既存のシステムを9.9.4.0にアップグレードするには、BlueXP Connectorのバージョン3.9.4以降が実行されている必要があります。</block>
+  <block id="774011294b90ee94b95b1f8934d49a0a" category="section-title">コネクタのバージョン3.9.4で変更が加えられました</block>
+  <block id="e535960ad08948ea2279c759ea0ca469" category="paragraph">3.9.4リリースのConnectorでは、AWS KMSのサポート強化、Google Cloudでの共有VPCのサポート、Google CloudでのIPの削減など、Cloud Volumes ONTAP の管理機能がいくつか強化されています。</block>
+  <block id="1fa5bc3f7a3a251f52ae2e9bbf51c563" category="paragraph">にアクセスします<block ref="6872c7556ed1cb501f7ddf52354e86ee" category="inline-link-rx"></block> 3.9.4 リリースの詳細については、を参照してください。</block>
+  <block id="7f7391e18716864e316aeb678b1bd017" category="list-text">9.8 リリースから Cloud Volumes ONTAP 9.9.0 にアップグレードできます。BlueXPでは、既存のCloud Volumes ONTAP 9.8システムを9.9.0リリースにアップグレードするように求められます。</block>
+  <block id="c716eebe2519c2ba4a2e109b59dd8b13" category="inline-link">BlueXPから通知があった場合のアップグレード方法について説明します</block>
+  <block id="bd4bd858d3e1a85d30586455b3e9daf2" category="paragraph"><block ref="6a49825bad49c3be284ac7a237bc2a26" category="inline-link-rx"></block>。</block>
+  <block id="40aa449308d0af16355f19e61ffe344b" category="paragraph">いいえ、できません。HA ペアのデータは、 Google Cloud で障害が発生した場合にデータを利用できるように、ノード間で同期的にミラーされます。たとえば、ノードAで8 TBのディスクを購入した場合、BlueXPはノードBにも8 TBのディスクを割り当てます。このディスクはミラーリングされたデータに使用されます。16TB の容量がプロビジョニングされましたが、ライセンスの上限には 8TB しかカウントされません。</block>
 </blocks>

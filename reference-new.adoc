@@ -16,7 +16,7 @@ summary: Cloud Volumes ONTAP 9.9.0 には、いくつかの新機能と機能拡
 [role="lead"]
 Cloud Volumes ONTAP 9.9.0 には、いくつかの新機能と機能拡張が含まれています。
 
-その他の機能と機能拡張は、 Cloud Manager の最新バージョンで導入されました。を参照してください https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["Cloud Manager リリースノート"^] を参照してください。
+その他の機能と拡張機能も、最新バージョンのBlueXPで導入されました。を参照してください https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["BlueXPリリースノート"^] を参照してください。
 
 
 
@@ -51,7 +51,7 @@ https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-planning-yo
 * Cloud Volumes ONTAP はコールド HDD （ sc1 ）ディスクをサポートしなくなりました。
 
 
-これらの EBS ディスクの変更は、 Cloud Manager 3.2.5 の一部として導入されました。
+これらのEBSディスクの変更は、BlueXP 3.9.5の一部として導入されました。
 
 * Azure アップデート *
 
@@ -111,26 +111,26 @@ https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-managing-sv
 
 
 
-== 必要な Cloud Manager Connector のバージョン
+== 必要なBlueXPコネクタのバージョン
 
-新しい Cloud Volumes ONTAP 9.9.0 システムを導入し、既存のシステムを 9.9.4.0 にアップグレードするには、 Cloud Manager Connector のバージョン 3.9.4 以降が実行されている必要があります。
+新しいCloud Volumes ONTAP 9.9.0システムを展開し、既存のシステムを9.9.4.0にアップグレードするには、BlueXP Connectorのバージョン3.9.4以降が実行されている必要があります。
 
 
 
-== Cloud Manager 3.9.4 で導入された変更点
+== コネクタのバージョン3.9.4で変更が加えられました
 
-Cloud Manager 3.9.4 リリースでは、 AWS KMS のサポート強化、 Google Cloud での共有 VPC のサポート、 Google Cloud での IP の削減など、 Cloud Volumes ONTAP の管理機能がいくつか強化されています。
+3.9.4リリースのConnectorでは、AWS KMSのサポート強化、Google Cloudでの共有VPCのサポート、Google CloudでのIPの削減など、Cloud Volumes ONTAP の管理機能がいくつか強化されています。
 
-にアクセスします https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["Cloud Manager リリースノート"^] 3.9.4 リリースの詳細については、を参照してください。
+にアクセスします https://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/whats-new.html["BlueXPリリースノート"^] 3.9.4 リリースの詳細については、を参照してください。
 
 
 
 == アップグレードに関する注意事項
 
-* Cloud Volumes ONTAP のアップグレードが Cloud Manager から完了している必要があります。System Manager または CLI を使用して Cloud Volumes ONTAP をアップグレードしないでください。これを行うと、システムの安定性に影響を与える可能性
-* 9.8 リリースから Cloud Volumes ONTAP 9.9.0 にアップグレードできます。既存の Cloud Volumes ONTAP 9.8 システムを 9.9.0 リリースにアップグレードするよう求めるメッセージが Cloud Manager に表示されます。
+* Cloud Volumes ONTAP のアップグレードは、BlueXPから完了している必要があります。System Manager または CLI を使用して Cloud Volumes ONTAP をアップグレードしないでください。これを行うと、システムの安定性に影響を与える可能性
+* 9.8 リリースから Cloud Volumes ONTAP 9.9.0 にアップグレードできます。BlueXPでは、既存のCloud Volumes ONTAP 9.8システムを9.9.0リリースにアップグレードするように求められます。
 +
-http://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-updating-ontap-cloud.html["Cloud Manager から通知された場合のアップグレード方法について説明します"^]。
+http://docs.netapp.com/us-en/cloud-manager-cloud-volumes-ontap/task-updating-ontap-cloud.html["BlueXPから通知があった場合のアップグレード方法について説明します"^]。
 
 * シングルノードシステムのアップグレードでは、 I/O が中断されるまで最大 25 分間システムがオフラインになります。
 * HA ペアのアップグレードは無停止で、 I/O が中断されません。無停止アップグレードでは、各ノードが連携してアップグレードされ、クライアントへの I/O の提供が継続されます。
